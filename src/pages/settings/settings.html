@@ -1,0 +1,43 @@
+<!--
+  Generated template for the SettingsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Settings</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <button ion-button (click)="goToIntro()">
+    How to play
+  </button>
+
+  <ion-list>
+    <ion-item>
+      <ion-icon name="musical-notes" item-start></ion-icon>
+      <ion-label>Sounds</ion-label>
+      <ion-toggle [(ngModel)]="sounds" (ionChange)="toggleSounds()"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="phone-portrait" item-start></ion-icon>
+      <ion-label>Vibrations</ion-label>
+      <ion-toggle [(ngModel)]="vibrations" (ionChange)="toggleVibrations()"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="notifications" item-start></ion-icon>
+      <ion-label>Push Notifications</ion-label>
+      <ion-toggle [(ngModel)]="notifications" (ionChange)="toggleNotifications()"></ion-toggle>
+    </ion-item>
+  </ion-list>
+
+  <button ion-button color="danger">
+    Delete Account
+  </button>
+</ion-content>
