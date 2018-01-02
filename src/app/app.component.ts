@@ -52,7 +52,7 @@ export class MyApp {
       if (this.platform.is('cordova')) this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-      this.storage.remove('introShown');
+      // this.storage.remove('introShown');
       this.storage.get('introShown').then((result) => {
 
         if (result) {

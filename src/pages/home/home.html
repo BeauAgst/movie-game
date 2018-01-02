@@ -8,26 +8,37 @@
 </ion-header>
 
 <ion-content padding>
-    <button ion-button>
-      New Game
-    </button>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingText="Pull to refresh"
+      refreshingText="Updating games">
+    </ion-refresher-content>
+  </ion-refresher>
 
-    <ion-list>
-      <ion-item-sliding *ngFor="let game of games">
-        <ion-item>
-          <ion-avatar item-start>
-            <img src="assets/imgs/game-img.png">
-          </ion-avatar>
-          <h2>{{game.action}}</h2>
-          <h3>Playing with {{game.group}}</h3>
-          <p>{{game.players.join(', ')}}</p>
-        </ion-item>
-        <ion-item-options side="right">
-          <button ion-button color="danger" (click)="deleteGame(game)">
-            <ion-icon name="trash"></ion-icon>
-            Delete
-          </button>
-        </ion-item-options>
-      </ion-item-sliding>
-    </ion-list>
+  <button ion-button (click)="createGame()">
+    New Game with friends
+  </button>
+  <button ion-button (click)="startGame()">
+    New Game with random opponents
+  </button>
+
+  <ion-list>
+    <ion-item-sliding *ngFor="let game of games">
+      <button ion-item (click)="takeTurn(game)">
+        <ion-avatar item-start>
+          <img src="assets/imgs/game-img.png">
+        </ion-avatar>
+        <h2 *ngIf="game.rounds[game.currentRound].players[user].played">Waiting for other players</h2>
+        <h2 *ngIf="!game.rounds[game.currentRound].players[user].played">It's your turn!</h2>
+        <h3>Playing with {{game.players.length}} {{game.group}}</h3>
+        <p>{{game.players.join(', ')}}</p>
+      </button>
+      <ion-item-options side="right">
+        <button ion-button color="danger" (click)="deleteGame(game)">
+          <ion-icon name="trash"></ion-icon>
+          Leave
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
 </ion-content>
